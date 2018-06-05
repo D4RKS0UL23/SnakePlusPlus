@@ -34,7 +34,7 @@ public:
 
 		@param dir the new direction
 	*/
-	void setDirection(Vector2D dir) { m_direction = dir; }
+	void setDirection(Vector2D dir);
 
 private:
 	std::vector<SnakePiece> m_snake;

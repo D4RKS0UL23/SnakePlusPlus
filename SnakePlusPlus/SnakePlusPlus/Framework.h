@@ -61,13 +61,18 @@ private:
 	
 	static sf::RenderWindow* window;	//	The window object
 	static sf::Event e;					//	An event holder, which saves current events
+	static sf::Clock c;
 
 	static Field m_field;				// The gamefield (The Field is a grid of white tiles)
 	static Snake m_snake;				// The snake (a collection of black tiles)
 
 	static sf::Font m_font;				// Font Holder
 	static sf::Text m_gameOverText;		// GameOver Text
+	static sf::Text m_FPS;
 
 	static bool m_gameOver;
+	static double m_frametime;
+	static bool m_showFrametime;
+
 };
 

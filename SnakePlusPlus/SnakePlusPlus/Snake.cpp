@@ -22,7 +22,7 @@ Snake::~Snake()
 bool Snake::Update(Field& field)
 {
 	// The snake gets updated every second
-	if (m_clock.getElapsedTime().asMilliseconds() >= 250)
+	if (m_clock.getElapsedTime().asMilliseconds() >= 50)
 	{
 		//remove the last tile in the vector, which thereby is the last piece of the snake
 		m_snake.pop_back();
@@ -72,5 +72,14 @@ void Snake::Render(sf::RenderWindow& window)
 	for (auto it : m_snake)
 	{
 		window.draw(it.tile);
+	}
+}
+
+void Snake::setDirection(Vector2D dir)
+{
+	if (dir.x != m_direction.x
+		&& dir.y != m_direction.y)
+	{
+		m_direction = dir;
 	}
 }
