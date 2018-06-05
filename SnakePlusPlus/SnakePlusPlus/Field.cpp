@@ -15,9 +15,10 @@ Field::Field()
 	m_scoreText.setPosition(5, 5);
 	m_scoreText.setColor(sf::Color::Black);
 
-	for (int y = 0; y < 33; y++)
+	// Generate every tile on the field
+	for (int y = 0; y < TPC; y++)
 	{
-		for (int x = 0; x < 33; x++)
+		for (int x = 0; x < TPR; x++)
 		{
 			// Magic numbers and hardcoding is completely acceptable
 			// Kill me please
@@ -28,7 +29,8 @@ Field::Field()
 			m_field.insert(std::pair<Vector2D, Tile>(Vector2D(x, y), t));
 		}
 	}
-
+	
+	// choose a random field and color it red, so it is a fruit field
 	range = std::uniform_int_distribution<int>(0, 32);
 	engine.seed(time(NULL));
 	m_field.find(Vector2D(range(engine), range(engine)))->second.setFillColor(sf::Color::Red);
@@ -41,12 +43,17 @@ Field::~Field()
 
 bool Field::IsOnFruit(Vector2D pos)
 {
+	// if the field at the given position is red, the position is a fruit
 	if (m_field.find(pos)->second.getFillColor() == sf::Color::Red)
 	{
+		// the snake is now on the fruit, so delete the fruit by coloring the tile white
 		m_field.find(pos)->second.setFillColor(sf::Color::White);
+		// choose another field and make it the fruit
 		m_field.find(Vector2D(range(engine), range(engine)))->second.setFillColor(sf::Color::Red);
 
+		//update score
 		m_score++;
+		m_scoreText.setString(std::to_string(m_score));
 		return true;
 	}
 
@@ -55,8 +62,10 @@ bool Field::IsOnFruit(Vector2D pos)
 
 void Field::Render(sf::RenderWindow& window)
 {
+	// render field
 	for (auto it : m_field)
 		window.draw(it.second);
 
+	// render score
 	window.draw(m_scoreText);
 }

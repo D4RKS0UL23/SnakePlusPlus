@@ -3,9 +3,8 @@
 
 int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
-
-	Framework::Initialize(WIDTH, HEIGHT, "SnakePlusPlus v1.0", sf::Style::Close);
-	Framework::Run();
+	Framework::Initialize(WIDTH, HEIGHT, "SnakePlusPlus v1.1", sf::Style::Close);	// Initialize Framework
+	Framework::Run();	// Enter program loop
 
 	return 0;
 }

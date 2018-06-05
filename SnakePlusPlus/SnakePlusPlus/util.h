@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
+// constants used by different classes
 #define WIDTH 825
 #define HEIGHT 825
 #define TILESIZE 25
@@ -21,6 +22,8 @@ struct Vector2D {
 
 	friend bool operator<(const Vector2D& lhs, const Vector2D& rhs)
 	{
+		// if you would read the tiles like a book (line by line, from left to right) then 
+		// the tiles you see first are "smaller" than the ones after it
 		if (lhs.y < rhs.y)
 			return true;
 		else if (lhs.y > rhs.y)
@@ -63,13 +66,14 @@ struct Vector2D {
 
 struct SnakePiece
 {
+	// A container for position and tile because maps fucking suck apparently
+
 	SnakePiece(Vector2D position)
 	{
 		this->position = Vector2D(position.x, position.y);
 
 		tile.setSize(sf::Vector2f(TILESIZE, TILESIZE));
-		tile.setPosition(TILESIZE * position.x, TILESIZE * position.y); // "I will redo this properly without magic numbers"
-																		// i did it!
+		tile.setPosition(TILESIZE * position.x, TILESIZE * position.y); // "I will redo this properly without magic numbers" (i did it!)
 		tile.setFillColor(sf::Color::Black);
 	}
 
